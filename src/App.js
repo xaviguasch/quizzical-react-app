@@ -8,6 +8,10 @@ function App() {
   const [isQuizzActive, setIsQuizzActive] = useState(false)
   const [questions, setQuestions] = useState([])
 
+  const startGame = () => {
+    setIsQuizzActive(true)
+  }
+
   useEffect(() => {
     console.log('effect ran')
 
@@ -20,7 +24,9 @@ function App() {
     <div className='App'>
       <h1>Quizz App</h1>
 
-      {!isQuizzActive && <StartScreen />}
+      {!isQuizzActive && <StartScreen onStartGame={startGame} questions={questions} />}
+
+      {isQuizzActive && <p>new screen</p>}
     </div>
   )
 }
