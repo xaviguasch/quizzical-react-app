@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import StartScreen from './components/StartScreen'
+import QuestionGroup from './components/QuestionGroup'
 
 import './App.css'
 
@@ -24,9 +25,9 @@ function App() {
     <div className='App'>
       <h1>Quizz App</h1>
 
-      {!isQuizzActive && <StartScreen onStartGame={startGame} questions={questions} />}
+      {!isQuizzActive && <StartScreen onStartGame={startGame} />}
 
-      {isQuizzActive && <p>new screen</p>}
+      {isQuizzActive && <QuestionGroup questions={questions} />}
     </div>
   )
 }

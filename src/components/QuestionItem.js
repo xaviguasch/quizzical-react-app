@@ -2,14 +2,17 @@ import React from 'react'
 
 import './QuestionItem.css'
 
-const QuestionItem = () => {
+const QuestionItem = ({ qData }) => {
+  const answers = [qData.correct_answer, ...qData.incorrect_answers]
+
+  console.log(answers)
+
   return (
     <div className='QuestionItem'>
-      <p>Question</p>
-      <p>a</p>
-      <p>b</p>
-      <p>c</p>
-      <p>d</p>
+      <h2>{qData.question}</h2>
+      {answers.map((ans) => (
+        <button key={ans}>{ans}</button>
+      ))}
     </div>
   )
 }
