@@ -9,7 +9,7 @@ function App() {
   const [isQuizzActive, setIsQuizzActive] = useState(false)
   const [questions, setQuestions] = useState([])
 
-  const startGame = () => {
+  const startGameHandler = () => {
     setIsQuizzActive(true)
   }
 
@@ -25,7 +25,7 @@ function App() {
     <div className='App'>
       <h1>Quizz App</h1>
 
-      {!isQuizzActive && <StartScreen onStartGame={startGame} />}
+      {!isQuizzActive && <StartScreen onStartGame={startGameHandler} />}
 
       {isQuizzActive && <QuestionGroup questions={questions} />}
     </div>

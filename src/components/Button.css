@@ -1,0 +1,13 @@
+.Button {
+}
+
+.clicked {
+  background-color: #9696e9;
+}
+
+.correct {
+  background-color: green;
+}
+.fail {
+  background-color: red;
+}
