@@ -36,7 +36,7 @@ const Button = ({
         onIsGameFinished && isClicked && !isCorrect ? 'fail' : ''
       }`}
       onClick={qBtnClickHandler}
-      disabled={onIsGameFinished}
+      disabled={isAnswerClicked || onIsGameFinished}
     >
       {children}
     </button>

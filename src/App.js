@@ -30,6 +30,14 @@ function App() {
       .then((data) => setQuestions(data.results))
   }
 
+  const resetGameHandler = () => {
+    setIsQuizzActive(false)
+    setPoints(0)
+    setIsGameFinished(false)
+
+    fetchBatchOfQuestions()
+  }
+
   useEffect(() => {
     console.log('effect ran')
 
@@ -50,7 +58,8 @@ function App() {
             points={points}
             isGameFinished={isGameFinished}
           />
-          <button onClick={checkAnswerHandler}>Check answers</button>
+          {!isGameFinished && <button onClick={checkAnswerHandler}>Check answers</button>}
+          {isGameFinished && <button onClick={resetGameHandler}>Play Again</button>}
         </div>
       )}
     </div>
