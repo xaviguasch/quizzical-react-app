@@ -4,7 +4,7 @@ import QuestionItem from './QuestionItem'
 
 import './QuestionGroup.css'
 
-const QuestionGroup = ({ questions }) => {
+const QuestionGroup = ({ questions, onCountPoints, points }) => {
   const [isGameFinished, setIsGameFinished] = useState(false)
 
   const checkAnswerHandler = () => {
@@ -18,6 +18,7 @@ const QuestionGroup = ({ questions }) => {
           key={q.correct_answer}
           qData={q}
           onIsGameFinished={isGameFinished}
+          onCountPoints={onCountPoints}
         />
       ))}
 
@@ -27,6 +28,12 @@ const QuestionGroup = ({ questions }) => {
       <br />
 
       <button onClick={checkAnswerHandler}>Check answers</button>
+
+      {isGameFinished && (
+        <p>
+          You scored {points}/{questions.length} correct answers
+        </p>
+      )}
     </div>
   )
 }

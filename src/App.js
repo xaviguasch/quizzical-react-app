@@ -8,9 +8,15 @@ import './App.css'
 function App() {
   const [isQuizzActive, setIsQuizzActive] = useState(false)
   const [questions, setQuestions] = useState([])
+  const [points, setPoints] = useState(0)
 
   const startGameHandler = () => {
     setIsQuizzActive(true)
+  }
+
+  const countPointsHandler = () => {
+    console.log('counting')
+    setPoints((prevState) => prevState + 1)
   }
 
   useEffect(() => {
@@ -27,7 +33,13 @@ function App() {
 
       {!isQuizzActive && <StartScreen onStartGame={startGameHandler} />}
 
-      {isQuizzActive && <QuestionGroup questions={questions} />}
+      {isQuizzActive && (
+        <QuestionGroup
+          questions={questions}
+          onCountPoints={countPointsHandler}
+          points={points}
+        />
+      )}
     </div>
   )
 }

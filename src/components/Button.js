@@ -8,6 +8,7 @@ const Button = ({
   isAnswerClicked,
   onIsGameFinished,
   correctAnswer,
+  onCountPoints,
 }) => {
   const [isClicked, setIsClicked] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
@@ -21,6 +22,10 @@ const Button = ({
     if (onIsGameFinished) {
       if (correctAnswer === children) {
         setIsCorrect(true)
+
+        if (isClicked) {
+          onCountPoints()
+        }
       }
     }
   }, [onIsGameFinished])
@@ -31,7 +36,7 @@ const Button = ({
         onIsGameFinished && isClicked && !isCorrect ? 'fail' : ''
       }`}
       onClick={qBtnClickHandler}
-      disabled={isAnswerClicked}
+      disabled={onIsGameFinished}
     >
       {children}
     </button>

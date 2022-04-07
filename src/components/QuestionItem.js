@@ -4,7 +4,7 @@ import Button from './Button'
 
 import './QuestionItem.css'
 
-const QuestionItem = ({ qData, onIsGameFinished }) => {
+const QuestionItem = ({ qData, onIsGameFinished, onCountPoints }) => {
   const [isAnswerClicked, setIsAnswerClicked] = useState(false)
 
   const [pickedAnswer, setPickedAnswer] = useState('')
@@ -39,6 +39,7 @@ const QuestionItem = ({ qData, onIsGameFinished }) => {
           isAnswerClicked={isAnswerClicked}
           onIsGameFinished={onIsGameFinished}
           correctAnswer={correctAnswer}
+          onCountPoints={onCountPoints}
         >
           {ans}
         </Button>
