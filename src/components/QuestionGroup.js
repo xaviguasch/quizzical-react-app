@@ -4,13 +4,7 @@ import QuestionItem from './QuestionItem'
 
 import './QuestionGroup.css'
 
-const QuestionGroup = ({ questions, onCountPoints, points }) => {
-  const [isGameFinished, setIsGameFinished] = useState(false)
-
-  const checkAnswerHandler = () => {
-    setIsGameFinished(true)
-  }
-
+const QuestionGroup = ({ questions, onCountPoints, points, isGameFinished }) => {
   return (
     <div className='QuestionGroup'>
       {questions.map((q) => (
@@ -26,8 +20,6 @@ const QuestionGroup = ({ questions, onCountPoints, points }) => {
       <br />
       <br />
       <br />
-
-      <button onClick={checkAnswerHandler}>Check answers</button>
 
       {isGameFinished && (
         <p>

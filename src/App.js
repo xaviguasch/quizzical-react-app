@@ -9,6 +9,11 @@ function App() {
   const [isQuizzActive, setIsQuizzActive] = useState(false)
   const [questions, setQuestions] = useState([])
   const [points, setPoints] = useState(0)
+  const [isGameFinished, setIsGameFinished] = useState(false)
+
+  const checkAnswerHandler = () => {
+    setIsGameFinished(true)
+  }
 
   const startGameHandler = () => {
     setIsQuizzActive(true)
@@ -19,12 +24,16 @@ function App() {
     setPoints((prevState) => prevState + 1)
   }
 
-  useEffect(() => {
-    console.log('effect ran')
-
+  const fetchBatchOfQuestions = () => {
     fetch('https://opentdb.com/api.php?amount=5&category=11&type=multiple')
       .then((res) => res.json())
       .then((data) => setQuestions(data.results))
+  }
+
+  useEffect(() => {
+    console.log('effect ran')
+
+    fetchBatchOfQuestions()
   }, [])
 
   return (
@@ -34,11 +43,15 @@ function App() {
       {!isQuizzActive && <StartScreen onStartGame={startGameHandler} />}
 
       {isQuizzActive && (
-        <QuestionGroup
-          questions={questions}
-          onCountPoints={countPointsHandler}
-          points={points}
-        />
+        <div>
+          <QuestionGroup
+            questions={questions}
+            onCountPoints={countPointsHandler}
+            points={points}
+            isGameFinished={isGameFinished}
+          />
+          <button onClick={checkAnswerHandler}>Check answers</button>
+        </div>
       )}
     </div>
   )
