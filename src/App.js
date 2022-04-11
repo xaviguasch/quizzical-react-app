@@ -10,7 +10,6 @@ function App() {
   const [questionsData, setQuestionsData] = useState([])
   const [points, setPoints] = useState(0)
   const [isGameFinished, setIsGameFinished] = useState(false)
-  const [answers, setAnswers] = useState([])
 
   const checkAnswerHandler = () => {
     setIsGameFinished(true)

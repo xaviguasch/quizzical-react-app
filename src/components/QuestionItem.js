@@ -4,6 +4,8 @@ import Button from './Button'
 
 import './QuestionItem.css'
 
+import he from 'he'
+
 const QuestionItem = ({ qData, onIsGameFinished, onCountPoints }) => {
   const [isAnswerSelected, setIsAnswerSelected] = useState(false)
 
@@ -13,11 +15,11 @@ const QuestionItem = ({ qData, onIsGameFinished, onCountPoints }) => {
     setIsAnswerSelected(true)
   }
 
-  const answers = [qData.correct_answer, ...qData.incorrect_answers]
+  const answers = qData.shuffledAnswers
 
   return (
     <div className='QuestionItem'>
-      <h2>{qData.question}</h2>
+      <h2>{he.decode(qData.question)}</h2>
 
       {answers.map((ans) => (
         <Button
@@ -28,7 +30,7 @@ const QuestionItem = ({ qData, onIsGameFinished, onCountPoints }) => {
           correctAnswer={correctAnswer}
           onCountPoints={onCountPoints}
         >
-          {ans}
+          {he.decode(ans)}
         </Button>
       ))}
     </div>
