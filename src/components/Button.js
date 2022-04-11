@@ -5,7 +5,7 @@ import './Button.css'
 const Button = ({
   children,
   onChoseAnswer,
-  isAnswerClicked,
+  isAnswerSelected,
   onIsGameFinished,
   correctAnswer,
   onCountPoints,
@@ -16,6 +16,7 @@ const Button = ({
   const qBtnClickHandler = () => {
     setIsClicked(true)
     onChoseAnswer(children)
+    console.log(children)
   }
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const Button = ({
         onIsGameFinished && isClicked && !isCorrect ? 'fail' : ''
       }`}
       onClick={qBtnClickHandler}
-      disabled={isAnswerClicked || onIsGameFinished}
+      disabled={isAnswerSelected || onIsGameFinished}
     >
       {children}
     </button>

@@ -5,28 +5,15 @@ import Button from './Button'
 import './QuestionItem.css'
 
 const QuestionItem = ({ qData, onIsGameFinished, onCountPoints }) => {
-  const [isAnswerClicked, setIsAnswerClicked] = useState(false)
-
-  const [pickedAnswer, setPickedAnswer] = useState('')
-  const [winningRound, setWinningRound] = useState(false)
+  const [isAnswerSelected, setIsAnswerSelected] = useState(false)
 
   const correctAnswer = qData.correct_answer
 
   const choseAnswer = (pickedAns) => {
-    console.log('pickedAns from the button: ', pickedAns)
-    setIsAnswerClicked(true)
-    setPickedAnswer(pickedAns)
+    setIsAnswerSelected(true)
   }
 
   const answers = [qData.correct_answer, ...qData.incorrect_answers]
-
-  useEffect(() => {
-    if (onIsGameFinished) {
-      if (pickedAnswer === correctAnswer) {
-        setWinningRound(true)
-      }
-    }
-  }, [onIsGameFinished])
 
   return (
     <div className='QuestionItem'>
@@ -36,7 +23,7 @@ const QuestionItem = ({ qData, onIsGameFinished, onCountPoints }) => {
         <Button
           key={ans}
           onChoseAnswer={choseAnswer}
-          isAnswerClicked={isAnswerClicked}
+          isAnswerSelected={isAnswerSelected}
           onIsGameFinished={onIsGameFinished}
           correctAnswer={correctAnswer}
           onCountPoints={onCountPoints}

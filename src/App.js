@@ -7,9 +7,10 @@ import './App.css'
 
 function App() {
   const [isQuizzActive, setIsQuizzActive] = useState(false)
-  const [questions, setQuestions] = useState([])
+  const [questionsData, setQuestionsData] = useState([])
   const [points, setPoints] = useState(0)
   const [isGameFinished, setIsGameFinished] = useState(false)
+  const [answers, setAnswers] = useState([])
 
   const checkAnswerHandler = () => {
     setIsGameFinished(true)
@@ -24,14 +25,48 @@ function App() {
     setPoints((prevState) => prevState + 1)
   }
 
+  // Helper function, it shuffles the order a given arry
+  const shuffle = (originalArray) => {
+    const array = [].concat(originalArray)
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex -= 1
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex]
+      array[currentIndex] = array[randomIndex]
+      array[randomIndex] = temporaryValue
+    }
+
+    return array
+  }
+
   const fetchBatchOfQuestions = () => {
     fetch('https://opentdb.com/api.php?amount=5&category=11&type=multiple')
       .then((res) => res.json())
-      .then((data) => setQuestions(data.results))
+      .then((data) => {
+        const resultArr = data.results.map((obj) => {
+          let answersArr = [obj.correct_answer, ...obj.incorrect_answers]
+
+          let shuffledAnswers = shuffle(answersArr)
+
+          let wholeObj = { ...obj, shuffledAnswers }
+
+          return wholeObj
+        })
+
+        setQuestionsData(resultArr)
+      })
   }
 
   const resetGameHandler = () => {
-    setIsQuizzActive(false)
+    // setIsQuizzActive(false)
     setPoints(0)
     setIsGameFinished(false)
 
@@ -53,7 +88,7 @@ function App() {
       {isQuizzActive && (
         <div>
           <QuestionGroup
-            questions={questions}
+            questions={questionsData}
             onCountPoints={countPointsHandler}
             points={points}
             isGameFinished={isGameFinished}
