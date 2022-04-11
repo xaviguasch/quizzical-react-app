@@ -50,20 +50,17 @@
   --fs-80: 5rem;
 
   /* Text */
-  --clr-grayish-dark-text: hsla(245, 10%, 22%, 1);
-  --clr-grayish-dark-diluted-text: hsla(245, 10%, 22%, 0.15);
-  --clr-white-text: hsla(0, 0%, 100%, 1);
-  --clr-cyan-text: hsla(168, 36%, 54%, 1);
+  --clr-grayish-dark-blue-text: hsla(231, 42%, 28%, 1);
+  --clr-dilted-grayish-dark-blue-text: hsla(231, 42%, 28%, 0.5);
+  --clr-whiteish-text: hsla(220, 43%, 97%, 1);
 
   /* Background  */
-  --clr-very-light-grey-bg: hsla(0, 0%, 98%, 1);
+  --clr-whiteish-bg: hsl(220, 43%, 97%);
 
-  --clr-dark-blue-bg: hsla(205, 41%, 21%, 1);
-  --clr-darker-blue-bg: hsl(205, 38%, 17%);
-  --clr-cyan-bg: hsla(168, 36%, 54%, 1);
-  --clr-dark-cyan-bg: hsl(167, 34%, 45%);
-
-  /* Others */
+  --clr-green-bg: hsl(133, 46%, 71%);
+  --clr-diluted-red-bg: hsl(0, 81%, 85%);
+  --clr-dark-blue-bg: hsla(230, 34%, 46%, 1);
+  --clr-diluted-blue-bg: hsl(230, 61%, 90%);
 }
 
 body {
